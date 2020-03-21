@@ -11,6 +11,8 @@ body {
   color: #333;
   background-color: #eeeded;
   height: 100%;
+  overflow-x: hidden;
+
 }
 
 .sidebar-toggler {
@@ -149,6 +151,8 @@ body {
   .sidebar.sidebar-fixed {
     position: sticky;
     top: 5.5rem;
+    
+  
   }
   .sidebar.sidebar-default .sidebar-category {
     background-color: #fff;
@@ -163,7 +167,7 @@ body {
   }
 
   .content-wrapper {
-    display: block;
+    display: table-cell;
     width: 100%;
   }
 }

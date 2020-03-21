@@ -40,7 +40,8 @@ class Book(models.Model):
     summery = models.TextField(help_text='Enter a brief description of the book')
     isbn = models.CharField('ISBN', max_length=13, help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
     genre = models.ManyToManyField(Genre,help_text='Select a genre for this book')
-    
+    book_added_date = models.DateTimeField(auto_now_add=True)
+
     
     def get_absolute_url(self):
         return reverse('book-detail',args=[str(self.id)])
