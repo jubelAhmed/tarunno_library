@@ -1,0 +1,39 @@
+{% extends 'base_generic.html' %}
+
+{% block title %} Library Home  {% endblock %}
+
+{% block content %}
+
+    <div class="row">
+       
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4"></div>
+
+        <div class="col-sm-4">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header bg-info text-white">
+              <strong> Library Records </strong>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-primary">
+                 Books <span class="badge badge-info p-2">{{ num_books }}  </span>
+              </li>
+              <li class="list-group-item text-primary">
+                Copies <span class="badge badge-info p-2">{{ num_instances }}  </span>
+             </li>
+             <li class="list-group-item text-primary">
+                Copies available <span class="badge badge-info p-2">{{num_book_instance_available }}  </span>
+             </li>
+             <li class="list-group-item text-primary">
+                Authors <span class="badge badge-info p-2">{{ num_authors }}  </span>
+             </li>
+             <li class="list-group-item text-primary">
+                Genres <span class="badge badge-info p-2">{{ num_genres }}  </span>
+             </li>
+              
+            </ul>
+          </div>
+        </div>
+    </div>
+   
+{% endblock %}
