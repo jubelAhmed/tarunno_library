@@ -1,0 +1,51 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block title %} Author Details {% endblock %}
+
+{% block content %}
+
+<div class="row ">
+    <div class="col-sm-6 bg-">
+        <div class="card mt-2" style="width:18rem;  border:none">
+            <div class="card-body">
+              <h5 class="card-title">{{author.first_name}} {{author.last_name}}</h5>
+              <p class="card-text">Birth Date : {{author.date_of_birth}}</p>
+              {% if author.date_of_died %}
+              <p class="card-text">Died Date : {{author.date_of_died}}</p>
+              {% endif %}
+              <button class="btn p-0">
+                      Books <span class="p-2 badge badge-primary">{{author.book_set.all.count}}</span>
+              </button>
+              <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+          </div>
+    </div>
+    <div class="col-sm-4 m-4">
+        <img class="card-img-top"  src="{% static 'img/book_cover.png' %}" alt="Card image cap">
+    </div>
+</div>
+<div class="row ">
+    <div class="col-sm-12">
+        
+            <h5 class="text-secondary p-3">Books</h5>
+        
+        
+        <ul class="list-group list-group-flush">
+            {% for book in author.book_set.all %}
+            <li class="list-group-item">
+                <h5> <a href="{{book.get_absolute_url}}">{{book.title}}</a> </h5>
+                <p>{{book.summery}}</p>
+            
+            </li>
+            {% endfor %}
+            
+            </ul>
+            
+    </div>
+   
+    
+</div>
+
+
+
+{% endblock %}

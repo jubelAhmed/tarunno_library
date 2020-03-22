@@ -1,0 +1,44 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block title %} Author List {% endblock %}
+
+{% block content %}
+ 
+    <div class="m-2 row justify-content-center">
+        <div class="col-sm-3 bg-danger" ><h5 class="p-2 text-info text-center ">All Authors</h5></div>
+    </div>
+
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Author Name</th>
+            <th scope="col">Birth Date</th>
+            <th scope="col">Number of Books</th>
+            <th scope="col">Books list</th>
+            <!-- <th scope="col">Handle</th> -->
+          </tr>
+        </thead>
+        <tbody>
+  {% if author_list %}
+  
+    {% for author in author_list %}
+
+          <tr>
+            <td> <a href="{{ author.get_absolute_url }}">{{ author.first_name }} {{author.last_name }}</a>  </td>
+            <td>({{author.date_of_birth}})</td>
+            <td>{{author.book_set.all.count}}</td>
+            <td>{{author.show_all_books}}</td>
+            
+          </tr>
+       
+      
+      
+    {% endfor %}
+      
+</tbody>
+</table>
+
+  {% else %}
+    <p>There have no author .</p>
+  {% endif %}       
+{% endblock %}

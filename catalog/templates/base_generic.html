@@ -42,28 +42,12 @@
 
 <body>
     {% block sidebar%}
-    <header class="py-3 bg-dark">
-        <div>
-            <a href="#" class="sidebar-toggler position-absolute m-2 bg-white d-block d-md-none" data-toggle="collapse"
-                data-target="#sidebar-main" aria-controls="sidebar-main" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="sidebar-toggler-icon"></span>
-            </a>
-            <a class="ml-5 pl-5 navbar-brand text-white" href="#">
-                <img src="{% static 'img/new.PNG' %}" width="30" height="30" class="d-inline-block align-top" alt="">
-                তারুণ্য পাবলিক লাইব্রেরি
-            </a>
-            <ul class="list-inline pt-2" style="display:inline-block; ;margin-right:30px; float:right; ">
-                <li class="list-inline-item text-primary"><a href="">Notice</a> </li>
-                <li class="list-inline-item text-primary"><a href="">Login</a> </li>
-                <li class="list-inline-item text-primary"><a href="">Logout</a> </li>
-
-            </ul>
 
 
-    </header>
-
-    <div id="sidebar-main  " class="sidebar sidebar-default sidebar-separate sidebar-fixed bg-white" style="width: 15%;">
+    <div id="sidebar-main" class="toggled sidebar sidebar-default sidebar-separate sidebar-fixed bg-secondary" style="width: 20%; height: 100vh; 
+    position:fixed;
+    float: left;
+    overflow: scroll;top:0">
         <div class="sidebar-content">
             <div class="sidebar-category sidebar-default">
                 <div class="sidebar-user">
@@ -75,8 +59,10 @@
             </div>
             <!-- /Sidebar Category -->
             <div class="sidebar-category sidebar-default bg-white">
-                <div class="category-title">
-                    <span><a href="{% url 'index' %}">Home</a></span>
+                <div class="category-title ">
+                    <span>
+                        <a class="nav-link p-0" href="{% url 'index' %}"> <i class="fa fa-home" aria-hidden="true"></i>Home</a>
+                    </span>
                 </div>
             </div>
             <div class="sidebar-category sidebar-default">
@@ -87,17 +73,12 @@
                 <div class="category-content">
                     <ul id="fruits-nav" class="nav flex-column">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{% url 'books' %}" class="nav-link">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                 All Books
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                Add Books
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -140,7 +121,7 @@
                 <div class="category-content">
                     <ul id="sidebar-editable-nav" class="nav flex-column">
                         <li class="nav-item">
-                            <a href="/admin/customers" class="nav-link">
+                            <a href="{%url 'authors' %}" class="nav-link">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                 All authors
                             </a>
@@ -157,45 +138,60 @@
     {% endblock %}
 
 
-    <div class="content-wrapper pt-3 bg-white" style="width:80%;">
-        <div class="row clearfix">
-            <div class="col-xs-12 col-md-12">
-                {% block pagetitle %}
-                <div class="row pl-4 bg-white mb-3">
+    <div class="content-wrapper bg-white clearfix" style="width:80%; float: right;">
+        <header class="py-3 bg-dark ">
+            <div>
+                <a href="#" class="sidebar-toggler position-absolute  bg-white d-block d-md-none" data-toggle="collapse"
+                    data-target="#sidebar-main" aria-controls="sidebar-main" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="sidebar-toggler-icon"></span>
+                </a>
+                <a class="ml-5 pl-5 navbar-brand text-white" href="#">
+                    <img src="{% static 'img/new.PNG' %}" width="30" height="30" class="d-inline-block align-top"
+                        alt="">
+                    <span style="width: 30%;"> তারুণ্য পাবলিক লাইব্রেরি </span>
+                </a>
+                <!-- <div  class="d-inline-flex flex-row align-content-end mr-2 bg-dark mb-2 " style="float: right;" >
+                    <div class="flex-item"><a class="nav-link text-warning " href="">Notice</a> </div>
+                    <div class="flex-item"><a class="nav-link text-warning " href="">Login</a> </div>
+                    <div class="flex-item"><a class="nav-link text-warning" href="">Logout</a> </div>
+                   
+                    
+                  </div> -->
+            </div>
 
 
-                    <div class="col-sm-12">
-                        <blockquote class="pt-2 mx-5 blockquote text-center bg-dark" style="border-radius: 25px;">
-                            <h2 class="text-warning ">তারুণ্য পাবলিক লাইব্রেরি</h2>
-                            <footer class="pl-5  blockquote-footer text-light bg-dark pb-2">( পরিচালনায় : তারুণ্য
-                                সমাজকল্যাণ পরিষদ ) </footer>
-                        </blockquote>
+        </header>
+        <div class="">
+            <!-- {% block pagetitle %} -->
+            <!-- end col -->
 
-                       
-                    </div>
+            <!-- {% endblock %} -->
 
-
-                </div> <!-- end col -->
-                
-                {% endblock %}
-
-                {% block content %}
-                                content
-                {% endblock %}
-
-                <!-- <div class="content-wrapper pt-3 bg-white">
-                    <div class="row ">
-                        <div class="col-xs-12 col-md-12">
-                            <div class="px-4">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-            </div> <!-- end row -->
+            {% block content %}
+            content
+            {% endblock %}
+            {% block pagination %}
+            {% if is_paginated %}
+            <div class="pagination m-5">
+                <span class="page-links">
+                    {% if page_obj.has_previous %}
+                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+                    <span class="page-current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+                    {% if page_obj.has_next %}
+                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                    {% endif %}
+                </span>
+            </div>
+            {% endif %}
+            {% endblock %}
         </div> <!-- end content-wrapper -->
 
-        
+    </div>
+
 
 
 </body>

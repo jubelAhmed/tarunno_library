@@ -22,10 +22,10 @@ class Author(models.Model):
         ordering=['last_name','first_name']
     
     def get_absolute_url(self):
-        return reverse('author_detail',args=[str(self.id)])
+        return reverse('author-detail',args=[str(self.id)])
     
     def show_all_books(self):
-        return ', '.join(book.title for book in self.book_set.all())
+        return ', '.join(book.title for book in self.book_set.all()[:3])
     # self.book_set.all() ///  book is Model name ,, book_set in geting value for many to many relation which relation declare from another Model
     
     
@@ -52,7 +52,7 @@ class Book(models.Model):
     display_genre.short_description = 'Genre'
     
     def show_author(self):
-        return ', '.join(author.first_name for author in self.author.all()[:3])
+        return ' '.join(author.first_name for author in self.author.all()[:3])
     show_author.short_description = 'Author'
     
     def __str__(self):

@@ -1,0 +1,40 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block title %} Books List {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    {% if my_book_list %}
+    <h5 class="display-6 text-info p-3">All Books</h5>
+<div class="d-flex flex-row flex-wrap mb-4">
+    
+    {% for book in my_book_list %}
+
+    <div class="p-1">
+        <div class="card " style="width: 14rem;">
+            <img class="card-img-top" src="{% static 'img/book_cover.png' %}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h5>
+                <p class="card-text">{{book.summery}}</p>
+                <h6 class="card-title ">
+                    {% for author in book.author.all %}
+                    <a class="text-warning" href="{{ author.get_absolute_url }}">{{ author.first_name }}
+                    {% if book.author.all.count > 1 %}
+                    <span class="text-primary">|</span>  
+                    {% endif %}  
+                    </a>
+                    {% endfor %}
+                </a></h6>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+{% else %}
+<p>There are no books in the library.</p>
+{% endif %}
+</div>
+
+{% endblock %}

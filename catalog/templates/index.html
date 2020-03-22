@@ -4,72 +4,94 @@
 
 {% block content %}
 
-<div class="row ">
+<div class="container">
+   <div class="row bg-danger mb-3 justify-content-center">
 
-   <div class="col-sm-9">
-
-      <div class="row">
-         <div class="col-sm-4">
-            <div class=" mb-2 card text-center bg-info">
-               <div class="card-header text-white">
-                  <strong> Recent added books</strong>
-               </div>
-            </div>
-         </div>
-         <div class="col-sm-4">
-         </div>
-         <div class="col-sm-4"></div>
+      <div class="col-sm-12 col-md-6 col-lg-6">
+         <blockquote class="pt-2 blockquote text-center " style=" border-radius: 25px;">
+            <h2 class="text-warning ">তারুণ্য পাবলিক লাইব্রেরি</h2>
+            <footer class="blockquote-footer text-center text-light bg-dark pb-2">( পরিচালনায় : তারুণ্য
+               সমাজকল্যাণ পরিষদ ) </footer>
+         </blockquote>
+   
+   
       </div>
-
-
-      <div class="row">
-
-         {% for book in all_books%}
-         <div class="col-sm-4 mb-2 ">
-            <div class="card" style="width: 18rem;">
-               <img class="card-img-top" src="{% static 'img/book_cover.png' %}" alt="Cover Page">
-               <div class="card-body">
-                  <h5 class="card-title"> {{book.title}}</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">{{book.show_author}}</h6>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                     card's content.</p>
-                  <a href="#" class="card-link " style="float: right;">Details</a>
-                 
-               </div>
-            </div>
-         </div>
-         
-
-         {% endfor %}
-
-      </div>
-
+   
+   
+   
    </div>
-
-
-   <div class="col-sm-3">
-      <div class="card" style="width: 14rem;">
-         <div class="card-header bg-info text-white">
-            <strong> Library Records </strong>
+   
+   <div class="row ">
+   
+      <div class="col-sm-12 col-md-9 col-lg-9">
+   
+         <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-4">
+               <div class=" mb-2 card text-center bg-info">
+                  <div class="card-header text-white">
+                     <strong> Recent added books</strong>
+                  </div>
+               </div>
+            </div>
+   
          </div>
-         <ul class="list-group list-group-flush">
-            <li class="list-group-item text-primary">
-               Books <span class="badge badge-info p-2">{{ num_books }} </span>
-            </li>
-            <li class="list-group-item text-primary">
-               Copies <span class="badge badge-info p-2">{{ num_instances }} </span>
-            </li>
-            <li class="list-group-item text-primary">
-               Copies available <span class="badge badge-info p-2">{{num_book_instance_available }} </span>
-            </li>
-            <li class="list-group-item text-primary">
-               Authors <span class="badge badge-info p-2">{{ num_authors }} </span>
-            </li>
-            <li class="list-group-item text-primary">
-               Genres <span class="badge badge-info p-2">{{ num_genres }} </span>
-            </li>
-
-         </ul>
+   
+   
+         <div class="row">
+   
+            {% if all_books %}
+   
+            {% for book in all_books %}
+            <div class="col-sm-10 col-md-6 col-lg-4 mb-2 ">
+               <div class="card" style="width: 100%;">
+                  <img class="card-img-top" src="{% static 'img/book_cover.png' %}" alt="Cover Page">
+                  <div class="card-body">
+                     <h5 class="card-title"> {{book.title}}</h5>
+                     <h6 class="card-subtitle mb-2 text-muted">{{book.show_author}}</h6>
+                     <p class="card-text">{{book.summery}}</p>
+                     <a href="{{ book.get_absolute_url }}" class="card-link " style="float: right;">Details</a>
+   
+                  </div>
+               </div>
+            </div>
+   
+            {% endfor %}
+            <div class="col-sm-12">
+               <button style="float: right;" class="btn m-2"><a href="{% url 'books' %}">Show All Books</a></button>
+            </div>
+            {% else %}
+            <p class="pl-3">There are no books in the library.</p>
+            {% endif %}
+   
+         </div>
+   
+      </div>
+   
+   
+      <div class="col-sm-12 col-md-3 col-lg-3">
+         <div class="card" style="width: 95%">
+            <div class="card-header bg-info text-white">
+               <strong> Library Records </strong>
+            </div>
+            <ul class="list-group list-group-flush">
+               <li class="list-group-item text-primary">
+                  Books <span class="badge badge-info p-2">{{ num_books }} </span>
+               </li>
+               <li class="list-group-item text-primary">
+                  Copies <span class="badge badge-info p-2">{{ num_instances }} </span>
+               </li>
+               <li class="list-group-item text-primary">
+                  Copies available <span class="badge badge-info p-2">{{num_book_instance_available }} </span>
+               </li>
+               <li class="list-group-item text-primary">
+                  Authors <span class="badge badge-info p-2">{{ num_authors }} </span>
+               </li>
+               <li class="list-group-item text-primary">
+                  Genres <span class="badge badge-info p-2">{{ num_genres }} </span>
+               </li>
+   
+            </ul>
+         </div>
       </div>
    </div>
 </div>
