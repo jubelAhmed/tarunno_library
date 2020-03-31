@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'catalog',
     'bootstrap4',
+    'crispy_forms',
+
     
 ]
 
@@ -126,3 +128,15 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
+
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+SESSION_SAVE_EVERY_REQUEST = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+

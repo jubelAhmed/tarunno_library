@@ -20,12 +20,21 @@ from django.views.generic import RedirectView
 # for static
 from django.conf import settings
 from django.conf.urls.static import static
+from . import views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('test/', views.test,name='test' ),
     path('catalog/',include('catalog.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('',RedirectView.as_view(url='catalog/')),
 ]+static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
 
 
+#     path('accounts/login/', name='login'),
+#     path('accounts/logout/', name='logout'),
+#     path('accounts/password_change/', name='password_change'),
+#     path('accounts/password_change/done/', name='password_change_done'),
+#     path('accounts/password_reset/', name='password_reset'),
+#     path('accounts/password_reset/done/', name='password_reset_done'),

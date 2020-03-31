@@ -1,0 +1,31 @@
+{% extends 'base_generic.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row justify-content-center mt-5 ">
+    <div class="col-sm-4">
+        <h5 class="mt-2 text-center text-info mt-5">Login your account</h5>
+        <hr class="mt-0 mb-4">
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <button type="submit" class="btn btn-secondary text-center">Sign in</button>
+                </div>
+                <div class="col-sm-6">
+                    <p class="pt-2" ><a  class="text-danger" href="{% url 'password_reset' %}">Forget password?</a></p>
+
+                </div>
+            </div>
+            <p class=" p-2 mt-4 text-muted"> Notice : ( If you don't have an account please contact with admin)</p>
+
+
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

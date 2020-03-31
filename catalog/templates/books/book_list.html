@@ -6,13 +6,13 @@
 
 <div class="container">
     {% if my_book_list %}
-    <h5 class="display-6 text-info p-3">All Books</h5>
+    <h5 class="display-6 text-info pl-3 pt-3 "> <strong>All Books</strong> </h5>
 <div class="d-flex flex-row flex-wrap mb-4">
     
     {% for book in my_book_list %}
 
-    <div class="p-1">
-        <div class="card " style="width: 14rem;">
+    <div class="">
+        <div class="card m-2 " style="width: 18rem;">
             <img class="card-img-top" src="{% static 'img/book_cover.png' %}" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title"><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></h5>
@@ -33,7 +33,7 @@
     {% endfor %}
 </div>
 {% else %}
-<p>There are no books in the library.</p>
+<p class="m-5">There are no books in the library.</p>
 {% endif %}
 </div>
 

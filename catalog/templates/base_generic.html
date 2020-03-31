@@ -1,15 +1,30 @@
 <!DOCTYPE html>
+
 {% load static %}
+
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} Tarunno Public Library {% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/new.css' %}">
 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>{% block title %} Tarunno Public Library {% endblock %}</title>
+
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/simple-sidebar.css' %}" rel="stylesheet">
+
+  <link rel="stylesheet" href="{% static 'css/new.css' %}">
+
+  
     <!-- Bootstrap 4 -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
@@ -19,7 +34,7 @@
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
-    </script>
+    </script> -->
 
     <!-- Font Awesome -->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
@@ -41,15 +56,16 @@
 </head>
 
 <body>
-    {% block sidebar%}
 
+  <div class="d-flex toggled" id="wrapper">
 
-    <div id="sidebar-main" class="toggled sidebar sidebar-default sidebar-separate sidebar-fixed bg-secondary" style="width: 20%; height: 100vh; 
-    position:fixed;
-    float: left;
-    overflow: scroll;top:0">
-        <div class="sidebar-content">
-            <div class="sidebar-category sidebar-default">
+    <!-- Sidebar -->
+    <div class="bg-dark border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading text-warning text-center">  <strong> Tarunno Library</strong> </div>
+      <div class="list-group list-group-flush">
+
+        <div class="sidebar sidebar-content">
+            <div class="sidebar-category sidebar-default sidebar-content ">
                 <div class="sidebar-user">
                     <div class="category-content">
                         <h6>Jubel Ahmed</h6>
@@ -58,14 +74,8 @@
                 </div>
             </div>
             <!-- /Sidebar Category -->
-            <div class="sidebar-category sidebar-default bg-white">
-                <div class="category-title ">
-                    <span>
-                        <a class="nav-link p-0" href="{% url 'index' %}"> <i class="fa fa-home" aria-hidden="true"></i>Home</a>
-                    </span>
-                </div>
-            </div>
-            <div class="sidebar-category sidebar-default">
+            
+            <div class="sidebar-category sidebar-content sidebar-default  bg-white">
 
                 <div class="category-title">
                     <span>Books</span>
@@ -114,7 +124,7 @@
                 <!-- /Category Content -->
             </div>
             <!-- /Sidebar Category -->
-            <div class="sidebar-category sidebar-default bg-white">
+            <div class="sidebar-category sidebar-default  bg-white">
                 <div class="category-title">
                     <span>Author</span>
                 </div>
@@ -134,65 +144,78 @@
             </div>
             <!-- /Sidebar Category -->
         </div>
+      </div>
     </div>
-    {% endblock %}
+    <!-- /#sidebar-wrapper -->
 
+    <!-- Page Content -->
+    <div id="page-content-wrapper" >
 
-    <div class="content-wrapper bg-white clearfix" style="width:80%; float: right;">
-        <header class="py-3 bg-dark ">
-            <div>
-                <a href="#" class="sidebar-toggler position-absolute  bg-white d-block d-md-none" data-toggle="collapse"
-                    data-target="#sidebar-main" aria-controls="sidebar-main" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="sidebar-toggler-icon"></span>
-                </a>
-                <a class="ml-5 pl-5 navbar-brand text-white" href="#">
-                    <img src="{% static 'img/new.PNG' %}" width="30" height="30" class="d-inline-block align-top"
-                        alt="">
-                    <span style="width: 30%;"> তারুণ্য পাবলিক লাইব্রেরি </span>
-                </a>
-                <!-- <div  class="d-inline-flex flex-row align-content-end mr-2 bg-dark mb-2 " style="float: right;" >
-                    <div class="flex-item"><a class="nav-link text-warning " href="">Notice</a> </div>
-                    <div class="flex-item"><a class="nav-link text-warning " href="">Login</a> </div>
-                    <div class="flex-item"><a class="nav-link text-warning" href="">Logout</a> </div>
-                   
-                    
-                  </div> -->
-            </div>
+      <nav class="navbar navbar-expand-lg navbar-light bg-secondary text-white border-bottom fixed-top ">
+        <button class="btn btn-dark" id="menu-toggle"> <i class="fa fa-bars"></i> </button>
 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-        </header>
-        <div class="">
-            <!-- {% block pagetitle %} -->
-            <!-- end col -->
-
-            <!-- {% endblock %} -->
-
-            {% block content %}
-            content
-            {% endblock %}
-            {% block pagination %}
-            {% if is_paginated %}
-            <div class="pagination m-5">
-                <span class="page-links">
-                    {% if page_obj.has_previous %}
-                    <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
-                    {% endif %}
-                    <span class="page-current">
-                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                    </span>
-                    {% if page_obj.has_next %}
-                    <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
-                    {% endif %}
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto  mt-2 mt-lg-0 ">
+            <li class="nav-item active">
+                <span>
+                    <a class="nav-link text-warning" href="{% url 'index' %}"> <i class="fa fa-home" aria-hidden="true"></i> <strong> Home</strong></a>
                 </span>
-            </div>
-            {% endif %}
-            {% endblock %}
-        </div> <!-- end content-wrapper -->
+            </li>
+            <li class="nav-item">
+                <span>
+                    <a class="nav-link text-warning" href="{% url 'login' %}"> <i class="fa fa-pencil" aria-hidden="true"></i> <strong> Login</strong></a>
+                </span>
+            </li>
+            
+          </ul>
+        </div>
+      </nav>
 
+      <div class="container-fluid">
+
+        {% block content %}
+            content
+        {% endblock %}
+        {% block pagination %}
+        {% if is_paginated %}
+        <div class="pagination m-5">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+        {% endif %}
+        {% endblock pagination %}
+      </div>
     </div>
+    <!-- /#page-content-wrapper -->
 
+  </div>
+  <!-- /#wrapper -->
 
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/new.js' %}"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
 
 </body>
 
