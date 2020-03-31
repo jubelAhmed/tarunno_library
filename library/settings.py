@@ -129,14 +129,18 @@ STATICFILES_DIRS = [
     STATIC_DIR,
 ]
 
+LOGIN_REDIRECT_URL = 'home'
 
+LOGOUT_REDIRECT_URL = 'home'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 SESSION_SAVE_EVERY_REQUEST = True
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 
 

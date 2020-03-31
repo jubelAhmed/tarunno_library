@@ -13,6 +13,8 @@
 
   <title>{% block title %} Tarunno Public Library {% endblock %}</title>
 
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+
 
   <!-- Bootstrap core CSS -->
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -89,12 +91,15 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                Borrow Books
-                            </a>
-                        </li>
+                        {% if user.is_authenticated %}
+
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    Borrow Books
+                                </a>
+                            </li>
+                        {% endif %}
 
                         <li class="nav-item">
                             <a href="#other-fruits" class="nav-link" data-toggle="collapse" role="button"
@@ -151,7 +156,7 @@
     <!-- Page Content -->
     <div id="page-content-wrapper" >
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-secondary text-white border-bottom fixed-top ">
+      <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white border-bottom fixed-top ">
         <button class="btn btn-dark" id="menu-toggle"> <i class="fa fa-bars"></i> </button>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -162,20 +167,34 @@
           <ul class="navbar-nav ml-auto  mt-2 mt-lg-0 ">
             <li class="nav-item active">
                 <span>
-                    <a class="nav-link text-warning" href="{% url 'index' %}"> <i class="fa fa-home" aria-hidden="true"></i> <strong> Home</strong></a>
+                    <a class="nav-link text-warning" href="{% url 'home' %}"> <i class="fa fa-home" aria-hidden="true"></i> <strong> Home</strong></a>
                 </span>
             </li>
-            <li class="nav-item">
-                <span>
-                    <a class="nav-link text-warning" href="{% url 'login' %}"> <i class="fa fa-pencil" aria-hidden="true"></i> <strong> Login</strong></a>
-                </span>
-            </li>
+            
+            {% if user.is_authenticated %}
+
+            
+                <li class="nav-item">
+                    <a class="nav-link text-danger " href="{% url 'logout' %}"> <i class="fa fa-pencil"></i> Log Out </a>
+                </li>
+                <!-- <li class="nav-item ">
+                <span class="navbar-text text-info" >{{ user.username }}</span>
+                </li> -->
+  
+            {% else %}
+                <li class="nav-item">
+                    <span>
+                        <a class="nav-link text-danger" href="{% url 'login' %}"> <i class="fa fa-pencil" aria-hidden="true"></i> <strong> Login</strong></a>
+                    </span>
+                </li>
+  
+            {% endif %}
             
           </ul>
         </div>
       </nav>
 
-      <div class="container-fluid">
+      <div class="container-fluid " style="padding-top: 3.5rem;">
 
         {% block content %}
             content
@@ -205,7 +224,7 @@
   <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->
-  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'js/new.js' %}"></script>
 
